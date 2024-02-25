@@ -1,0 +1,908 @@
+# Generated from http://127.0.0.1:8000/docs#/
+# import yaml
+# res = yaml.safe_load(open("openapi.json"))
+# open("openapi.yaml", "w").write(yaml.safe_dump(res))
+
+components:
+  schemas:
+    Budget:
+      properties:
+        amount:
+          title: Amount
+          type: number
+        currency:
+          title: Currency
+          type: string
+      required:
+      - amount
+      - currency
+      title: Budget
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    NewProject:
+      properties:
+        admins:
+          items:
+            type: integer
+          title: Admins
+          type: array
+        budget:
+          $ref: '#/components/schemas/Budget'
+        description:
+          title: Description
+          type: string
+        name:
+          title: Name
+          type: string
+        resource_allocation:
+          items:
+            $ref: '#/components/schemas/ResourceAllocation'
+          title: Resource Allocation
+          type: array
+        users:
+          items:
+            type: integer
+          title: Users
+          type: array
+        virtual_lab_id:
+          title: Virtual Lab Id
+          type: string
+      required:
+      - virtual_lab_id
+      - name
+      - description
+      - budget
+      - resource_allocation
+      - admins
+      - users
+      title: NewProject
+      type: object
+    NewUser:
+      properties:
+        email:
+          title: Email
+          type: string
+        username:
+          title: Username
+          type: string
+      required:
+      - username
+      - email
+      title: NewUser
+      type: object
+    NewVirtualLab:
+      properties:
+        admins:
+          items:
+            type: integer
+          title: Admins
+          type: array
+        budget:
+          $ref: '#/components/schemas/Budget'
+        description:
+          title: Description
+          type: string
+        name:
+          title: Name
+          type: string
+        resource_allocation:
+          $ref: '#/components/schemas/ResourceAllocations'
+        users:
+          items:
+            type: integer
+          title: Users
+          type: array
+      required:
+      - name
+      - description
+      - budget
+      - resource_allocation
+      - admins
+      - users
+      title: NewVirtualLab
+      type: object
+    Project:
+      properties:
+        admins:
+          items:
+            $ref: '#/components/schemas/User'
+          title: Admins
+          type: array
+        budget:
+          $ref: '#/components/schemas/Budget'
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        description:
+          title: Description
+          type: string
+        id:
+          title: Id
+          type: string
+        name:
+          title: Name
+          type: string
+        resource_allocation:
+          items:
+            $ref: '#/components/schemas/ResourceAllocation'
+          title: Resource Allocation
+          type: array
+        resource_usage:
+          items:
+            $ref: '#/components/schemas/ResourceUsage'
+          title: Resource Usage
+          type: array
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          title: Users
+          type: array
+        virtual_lab_id:
+          title: Virtual Lab Id
+          type: string
+      required:
+      - virtual_lab_id
+      - name
+      - description
+      - budget
+      - resource_allocation
+      - id
+      - admins
+      - users
+      - resource_usage
+      - created_at
+      title: Project
+      type: object
+    ResourceAllocation:
+      properties:
+        amount:
+          title: Amount
+          type: number
+        unit:
+          title: Unit
+          type: string
+      required:
+      - amount
+      - unit
+      title: ResourceAllocation
+      type: object
+    ResourceAllocations:
+      properties:
+        cpu:
+          $ref: '#/components/schemas/ResourceAllocation'
+        ram:
+          $ref: '#/components/schemas/ResourceAllocation'
+      required:
+      - cpu
+      - ram
+      title: ResourceAllocations
+      type: object
+    ResourceUsage:
+      properties:
+        amount:
+          title: Amount
+          type: number
+        since:
+          format: date-time
+          title: Since
+          type: string
+        unit:
+          title: Unit
+          type: string
+      required:
+      - amount
+      - unit
+      - since
+      title: ResourceUsage
+      type: object
+    ResourceUsages:
+      properties:
+        cpu:
+          $ref: '#/components/schemas/ResourceUsage'
+        ram:
+          $ref: '#/components/schemas/ResourceUsage'
+      required:
+      - cpu
+      - ram
+      title: ResourceUsages
+      type: object
+    UpdateProject:
+      properties:
+        budget:
+          anyOf:
+          - $ref: '#/components/schemas/Budget'
+          - type: 'null'
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      title: UpdateProject
+      type: object
+    User:
+      properties:
+        email:
+          title: Email
+          type: string
+        id:
+          title: Id
+          type: string
+        username:
+          title: Username
+          type: string
+      required:
+      - username
+      - email
+      - id
+      title: User
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+    VirtualLab-Input:
+      properties:
+        admins:
+          items:
+            $ref: '#/components/schemas/User'
+          title: Admins
+          type: array
+        budget:
+          $ref: '#/components/schemas/Budget'
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        description:
+          title: Description
+          type: string
+        id:
+          title: Id
+          type: string
+        name:
+          title: Name
+          type: string
+        resource_allocation:
+          $ref: '#/components/schemas/ResourceAllocations'
+        resource_usage:
+          $ref: '#/components/schemas/ResourceUsages'
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          title: Users
+          type: array
+      required:
+      - name
+      - description
+      - budget
+      - resource_allocation
+      - id
+      - admins
+      - users
+      - resource_usage
+      - created_at
+      title: VirtualLab
+      type: object
+    VirtualLab-Output:
+      properties:
+        admins:
+          items:
+            $ref: '#/components/schemas/User'
+          title: Admins
+          type: array
+        budget:
+          $ref: '#/components/schemas/Budget'
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        description:
+          title: Description
+          type: string
+        id:
+          title: Id
+          type: string
+        name:
+          title: Name
+          type: string
+        resource_allocation:
+          $ref: '#/components/schemas/ResourceAllocations'
+        resource_usage:
+          $ref: '#/components/schemas/ResourceUsages'
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          title: Users
+          type: array
+      required:
+      - name
+      - description
+      - budget
+      - resource_allocation
+      - id
+      - admins
+      - users
+      - resource_usage
+      - created_at
+      title: VirtualLab
+      type: object
+info:
+  title: FastAPI
+  version: 0.1.0
+openapi: 3.1.0
+paths:
+  /api/user:
+    post:
+      operationId: create_user_api_user_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create User
+  /api/virtual_lab:
+    get:
+      operationId: get_all_virtual_labs_api_virtual_lab_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VirtualLab-Output'
+                title: Response Get All Virtual Labs Api Virtual Lab Get
+                type: array
+          description: Successful Response
+      summary: Get All Virtual Labs
+    post:
+      operationId: create_virtual_lab_api_virtual_lab_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewVirtualLab'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Virtual Lab
+  /api/virtual_lab/{virtual_lab_id}:
+    delete:
+      operationId: delete_virtual_lab_api_virtual_lab__virtual_lab_id__delete
+      parameters:
+      - in: path
+        name: virtual_lab_id
+        required: true
+        schema:
+          title: Virtual Lab Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete Virtual Lab
+    get:
+      operationId: get_virtual_lab_api_virtual_lab__virtual_lab_id__get
+      parameters:
+      - in: path
+        name: virtual_lab_id
+        required: true
+        schema:
+          title: Virtual Lab Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Virtual Lab
+    patch:
+      operationId: update_virtual_lab_api_virtual_lab__virtual_lab_id__patch
+      parameters:
+      - in: path
+        name: virtual_lab_id
+        required: true
+        schema:
+          title: Virtual Lab Id
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VirtualLab-Input'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Virtual Lab
+  /api/virtual_lab/{virtual_lab_id}/admin:
+    post:
+      operationId: add_admin_to_virtual_lab_api_virtual_lab__virtual_lab_id__admin_post
+      parameters:
+      - in: path
+        name: virtual_lab_id
+        required: true
+        schema:
+          title: Virtual Lab Id
+          type: string
+      - in: query
+        name: admin_id
+        required: true
+        schema:
+          title: Admin Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Add Admin To Virtual Lab
+  /api/virtual_lab/{virtual_lab_id}/admin/{admin_id}:
+    delete:
+      operationId: remove_admin_from_virtual_lab_api_virtual_lab__virtual_lab_id__admin__admin_id__delete
+      parameters:
+      - in: path
+        name: virtual_lab_id
+        required: true
+        schema:
+          title: Virtual Lab Id
+          type: string
+      - in: path
+        name: admin_id
+        required: true
+        schema:
+          title: Admin Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Remove Admin From Virtual Lab
+  /api/virtual_lab/{virtual_lab_id}/project:
+    get:
+      operationId: get_all_projects_for_virtual_lab_api_virtual_lab__virtual_lab_id__project_get
+      parameters:
+      - in: path
+        name: virtual_lab_id
+        required: true
+        schema:
+          title: Virtual Lab Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Project'
+                title: Response Get All Projects For Virtual Lab Api Virtual Lab  Virtual
+                  Lab Id  Project Get
+                type: array
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get All Projects For Virtual Lab
+    post:
+      operationId: create_project_api_virtual_lab__virtual_lab_id__project_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewProject'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Project
+  /api/virtual_lab/{virtual_lab_id}/project/{project_id}:
+    get:
+      operationId: get_project_for_virtual_lab_api_virtual_lab__virtual_lab_id__project__project_id__get
+      parameters:
+      - in: path
+        name: virtual_lab_id
+        required: true
+        schema:
+          title: Virtual Lab Id
+          type: string
+      - in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Get Project For Virtual Lab
+    patch:
+      operationId: update_project_api_virtual_lab__virtual_lab_id__project__project_id__patch
+      parameters:
+      - in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProject'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Project
+  /api/virtual_lab/{virtual_lab_id}/project/{project_id}/admin:
+    post:
+      operationId: add_admin_to_project_api_virtual_lab__virtual_lab_id__project__project_id__admin_post
+      parameters:
+      - in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+      - in: query
+        name: admin_id
+        required: true
+        schema:
+          title: Admin Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Add Admin To Project
+  /api/virtual_lab/{virtual_lab_id}/project/{project_id}/admin/{admin_id}:
+    delete:
+      operationId: remove_admin_from_project_api_virtual_lab__virtual_lab_id__project__project_id__admin__admin_id__delete
+      parameters:
+      - in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+      - in: path
+        name: admin_id
+        required: true
+        schema:
+          title: Admin Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Remove Admin From Project
+  /api/virtual_lab/{virtual_lab_id}/project/{project_id}/resource_allocation/{resource_name}:
+    post:
+      operationId: project_update_resource_allocation_api_virtual_lab__virtual_lab_id__project__project_id__resource_allocation__resource_name__post
+      parameters:
+      - in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+      - in: path
+        name: resource_name
+        required: true
+        schema:
+          title: Resource Name
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Project Update Resource Allocation
+  /api/virtual_lab/{virtual_lab_id}/project/{project_id}/user:
+    post:
+      operationId: add_user_to_project_api_virtual_lab__virtual_lab_id__project__project_id__user_post
+      parameters:
+      - in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+      - in: query
+        name: user_id
+        required: true
+        schema:
+          title: User Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Add User To Project
+  /api/virtual_lab/{virtual_lab_id}/project/{project_id}/user/{user_id}:
+    delete:
+      operationId: remove_user_from_project_api_virtual_lab__virtual_lab_id__project__project_id__user__user_id__delete
+      parameters:
+      - in: path
+        name: project_id
+        required: true
+        schema:
+          title: Project Id
+          type: string
+      - in: path
+        name: user_id
+        required: true
+        schema:
+          title: User Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Remove User From Project
+  /api/virtual_lab/{virtual_lab_id}/resource_allocation/{resource_name}:
+    post:
+      operationId: virtual_lab_update_resource_allocation_api_virtual_lab__virtual_lab_id__resource_allocation__resource_name__post
+      parameters:
+      - in: path
+        name: virtual_lab_id
+        required: true
+        schema:
+          title: Virtual Lab Id
+          type: string
+      - in: path
+        name: resource_name
+        required: true
+        schema:
+          title: Resource Name
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Virtual Lab Update Resource Allocation
+  /api/virtual_lab/{virtual_lab_id}/user:
+    post:
+      operationId: add_user_to_virtual_lab_api_virtual_lab__virtual_lab_id__user_post
+      parameters:
+      - in: path
+        name: virtual_lab_id
+        required: true
+        schema:
+          title: Virtual Lab Id
+          type: string
+      - in: query
+        name: user_id
+        required: true
+        schema:
+          title: User Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Add User To Virtual Lab
+  /api/virtual_lab/{virtual_lab_id}/user/{user_id}:
+    delete:
+      operationId: remove_user_from_virtual_lab_api_virtual_lab__virtual_lab_id__user__user_id__delete
+      parameters:
+      - in: path
+        name: virtual_lab_id
+        required: true
+        schema:
+          title: Virtual Lab Id
+          type: string
+      - in: path
+        name: user_id
+        required: true
+        schema:
+          title: User Id
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualLab-Output'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Remove User From Virtual Lab
