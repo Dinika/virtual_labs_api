@@ -94,6 +94,21 @@ async def get_all_virtual_labs() -> list[VirtualLab]:
 async def get_virtual_lab(virtual_lab_id: str) -> VirtualLab:
     return
 
+@app.post('/api/virtual_lab')
+async def create_virtual_lab(new_virtual_lab: NewVirtualLab) -> VirtualLab:
+    # Add current user to admins
+    return
+
+@app.patch('/api/virtual_lab/{virtual_lab_id}')
+async def update_virtual_lab(virtual_lab_id: str, modified_lab: VirtualLab) -> VirtualLab:
+    # TODO: Authorization needed
+    return
+
+@app.delete('/api/virtual_lab/{virtual_lab_id}')
+async def delete_virtual_lab(virtual_lab_id: str) -> VirtualLab:
+    # TODO: Authorization needed
+    return 
+
 @app.post('/api/virtual_lab/{virtual_lab_id}/resource_allocation/{resource_name}')
 async def virtual_lab_update_resource_allocation(virtual_lab_id: str, resource_name: str) -> VirtualLab:
     return
@@ -113,21 +128,6 @@ async def add_user_to_virtual_lab(virtual_lab_id: str, user_id: str) -> VirtualL
 @app.delete('/api/virtual_lab/{virtual_lab_id}/user/{user_id}')
 async def remove_user_from_virtual_lab(virtual_lab_id: str, user_id: str) -> VirtualLab:
     return
-
-@app.post('/api/virtual_lab')
-async def create_virtual_lab(new_virtual_lab: NewVirtualLab) -> VirtualLab:
-    # Add current user to admins
-    return
-
-@app.patch('/api/virtual_lab/{virtual_lab_id}')
-async def update_virtual_lab(virtual_lab_id: str, modified_lab: VirtualLab) -> VirtualLab:
-    # TODO: Authorization needed
-    return
-
-@app.delete('/api/virtual_lab/{virtual_lab_id}')
-async def delete_virtual_lab(virtual_lab_id: str) -> VirtualLab:
-    # TODO: Authorization needed
-    return 
 
 ########### PROJECTS #############
 
